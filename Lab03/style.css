@@ -1,0 +1,38 @@
+body{
+    background-color: rgb(236, 210, 214);
+}
+header h1{
+    color: rgb(175, 55, 55);
+}
+img{
+    height: 150px;
+    width: 150px;
+    border: 3px solid black;
+}
+h3{
+    color: rgb(131, 76, 131)
+}
+.wh{
+    color: rgb(244, 125, 125);
+}
+ul{
+    color: #f42a2a;
+}
+h1:first-letter{
+    font-size: 3em;
+}
+a[href^="https"]:hover{
+    font-size: 1.5em;
+    background-color: skyblue;
+}
+ol{
+    color: rgb(219, 116, 116);
+}
+p{
+    font-size: 1.5em;
+}
+hr{
+    height: 7px;
+    background-color:black;
+}
+
