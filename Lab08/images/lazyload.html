@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazy Loading Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .image-container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #999;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lazy Loading </h1>
+    <div class="image-container">
+        <img src="1.jpg" alt="Screenshot 1">
+        <img data-src="2.jpg" alt="Screenshot 2" class="lazy-img">
+        <img data-src="3..jpg" alt="Screenshot 3" class="lazy-img">
+        <img data-src="4.jpg" alt="Screenshot 4" class="lazy-img">
+        <img data-src="5.jpg" alt="Screenshot 5" class="lazy-img">
+
+    </div>
+
+    <script>
+        const lazyImages = document.querySelectorAll(".lazy-img");
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let img = entry.target;
+                    img.src = img.dataset.src;
+                    observer.unobserve(img);
+                }
+
+            });
+        });
+        lazyImages.forEach(img => {
+            observer.observe(img);
+        });
+    </script>
+
+</body>
+</html>

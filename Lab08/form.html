@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me - Fatima Arif</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Me</h1>
+    </header>
+
+    <main>
+        <form>
+            <fieldset>
+                <legend>Get in Touch</legend>
+
+                <label for="name">Your Full Name:</label><br>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+                <label for="subject">Subject:</label><br>
+                <input type="text" id="subject" name="subject" placeholder="Write subject" required><br><br>
+
+                <label for="phone">Phone Number (optional):</label><br>
+                <input type="text" id="phone" name="phone" placeholder="03XX-XXXXXXX"><br><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea><br><br>
+
+                <label>Preferred Contact Method:</label><br>
+                <input type="radio" id="contactEmail" name="contactMethod" value="Email" required>
+                <label for="contactEmail">Email</label>
+                <input type="radio" id="contactPhone" name="contactMethod" value="Phone">
+                <label for="contactPhone">Phone</label><br><br>
+
+                <label>
+                    <input type="checkbox" name="subscribe" value="Yes">
+                    Subscribe to my newsletter
+                </label><br><br>
+
+                <input type="submit" value="Send Message">
+                <input type="reset" value="Clear">
+                <button type="button" onclick="alert('You can contact me anytime via email or LinkedIn 😊')">Help</button>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2025 Fatima Arif - Portfolio Website</p>
+    </footer>
+
+    <script>
+        var form = document.querySelector('form');
+        var nameField = document.querySelector('#name');
+        var emailField = document.querySelector('#email');
+        var subjectField = document.querySelector('#subject');
+        var phoneField = document.querySelector('#phone');
+        var messageField = document.querySelector('#message');
+
+        nameField.addEventListener('input', checkName);
+        emailField.addEventListener('input', checkEmail);
+        subjectField.addEventListener('input', checkSubject);
+        phoneField.addEventListener('input', checkPhone);
+        messageField.addEventListener('input', checkMessage);
+
+        form.addEventListener('submit', function(e) {
+            if (!validate()) {
+                e.preventDefault();
+            }
+        });
+
+        function checkName() {
+            if (nameField.value.length < 5) {
+                nameField.style.backgroundColor = 'red';
+            } else {
+                nameField.style.backgroundColor = '';
+            }
+        }
+
+        function checkEmail() {
+            if (!emailField.value.includes('@') || emailField.value.length < 5) {
+                emailField.style.backgroundColor = 'red';
+            } else {
+                emailField.style.backgroundColor = '';
+            }
+        }
+
+        function checkSubject() {
+            if (subjectField.value.length < 5) {
+                subjectField.style.backgroundColor = 'red';
+            } else {
+                subjectField.style.backgroundColor = '';
+            }
+        }
+
+        function checkPhone() {
+            let digits = phoneField.value.replace(/[^0-9]/g, "");
+            if (digits !== '' && digits.length !== 11) {
+                phoneField.style.backgroundColor = 'red';
+            } else {
+                phoneField.style.backgroundColor = '';
+            }
+        }
+
+        function checkMessage() {
+            if (messageField.value.length < 5) {
+                messageField.style.backgroundColor = 'red';
+            } else {
+                messageField.style.backgroundColor = '';
+            }
+        }
+
+        function validate() {
+            let valid = true;
+
+            checkName();
+            checkEmail();
+            checkSubject();
+            checkPhone();
+            checkMessage();
+
+            if (nameField.style.backgroundColor === 'red') valid = false;
+            if (emailField.style.backgroundColor === 'red') valid = false;
+            if (subjectField.style.backgroundColor === 'red') valid = false;
+            if (phoneField.style.backgroundColor === 'red') valid = false;
+            if (messageField.style.backgroundColor === 'red') valid = false;
+
+            if (!valid) {
+                alert("Please correct all red fields before submitting.");
+            }
+
+            return valid;
+        }
+    </script>
+
+</body>
+</html>
