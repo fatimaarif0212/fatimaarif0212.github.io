@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Person</title>
+</head>
+<body>
+
+  <h2>Add Person</h2>
+
+  <form id="personForm">
+    <input type="text" name="name" placeholder="Name" required><br><br>
+    <input type="number" name="age" placeholder="Age" required><br><br>
+    <input type="text" name="gender" placeholder="Gender" required><br><br>
+    <input type="text" name="Iname" placeholder="Institute Name" required><br><br>
+    <button type="submit">Save</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    const form = document.getElementById("personForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        name: form.name.value,
+        age: form.age.value,
+        gender: form.gender.value,
+        Iname: form.Iname.value
+      };
+
+      const res = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      document.getElementById("msg").innerText = "Data Saved Successfully";
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
